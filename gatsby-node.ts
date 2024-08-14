@@ -74,7 +74,7 @@ exports.createPages = ({ actions, graphql }: { actions: any, graphql: any }) => 
         const tagPath = `/blog/tags/${_.kebabCase(tag)}/`;
         createPage({
           path: tagPath,
-          component: path.resolve(`src/templates/tags.ts`),
+          component: path.resolve(`src/templates/tags.tsx`),
           context: { tag },
         });
       });
