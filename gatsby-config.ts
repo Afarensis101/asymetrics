@@ -12,7 +12,7 @@ const config: GatsbyConfig = {
     options: {
       "icon": "src/img/logo_256.png"
     }
-  }, "gatsby-plugin-mdx", "gatsby-plugin-sharp", "gatsby-transformer-sharp", "gatsby-transformer-remark", {
+  }, "gatsby-plugin-mdx", "gatsby-plugin-sharp", "gatsby-transformer-sharp", {
     resolve: 'gatsby-source-filesystem',
     options: {
       "name": "images",
@@ -33,6 +33,7 @@ const config: GatsbyConfig = {
       name: 'articles',
     },
   },
+  "gatsby-transformer-remark",
   // {
   //   resolve: `gatsby-plugin-layout`,
   //   options: {

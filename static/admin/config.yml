@@ -1,0 +1,45 @@
+backend:
+  name: github
+  repo: Afarensis101/asymetrics
+  branch: main
+  commit_messages:
+    create: 'Malong creates new post {{collection}} “{{slug}}”'
+    update: 'Malong update post {{collection}} “{{slug}}”'
+    delete: 'Malong delete post {{collection}} “{{slug}}”'
+    uploadMedia: '[skip ci] Upload “{{path}}”'
+    deleteMedia: '[skip ci] Delete “{{path}}”'
+
+media_folder: static/img
+public_folder: /img
+publish_mode: editorial_workflow
+
+collections:
+  - name: "blog"
+    label: "Blog"
+    folder: "src/articles"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "blog-post"}
+      - {label: "Titre --> affiché ds la home page et ds l'article", name: "title", widget: "string"}
+      - {label: "Teaser --> affiché ds la home page et ds l'article", name: "teaser", widget: "text"}
+      - {label: "Image --> affichée seulement ds la home page pas ds l'article", name: "featuredimage", widget: image}
+      - {label: "Auteur", name: "author", widget: "select", options: ["Malong", "Lord Sandwich", "Asymetrics"]}
+      - {
+          label: "Categories",
+          name: "categories",
+          options: [{label: "News / Tunes / Update", value: "news"}, {label: "Mixtapes / Playlists / Podcasts", value: "mixtapes"}, {label: "Knowledge / Wisdom / Rhythm", value: "knowledge"}, {label: "Photography / Design / Architecture", value: "photography"}, {label: "Stories / Movies / Books", value: "stories"}, {label: "Reports / Facts / Subjects", value: "reports"}, {label: "Artworks / Pictures / Paintings", value: "artworks"},],
+          widget: "select"
+        }
+      - {label: "Tags --> #tags, #multiplesavecdesvirgules, #separatedComma, #toujoursavec1dièse", name: "tags", widget: "list"}
+      - {label: "Date de publication", name: "date", widget: "datetime"}
+      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Bloc de Paragraphes --> mettre une image et du texte alignés", name: "paragraphs", required: false, widget: object, fields: [{label: "Paragraphes", name: "blurbs", widget: "list", fields: [{label: Image, name: image, widget: image}, {label: Text, name: text, widget: text}]}]}
+      - {label: "Liste URL Liens internes --> liens vers des urls internes (articles du blog theasymetrics.com), affiché ds l'article, barre à droite", name: "insideLinks", required: false, widget: "list"}
+      - {
+          label: "RELATED",
+          name: "outsideLinks",
+          required: false,
+          widget: "object",
+          fields: [{label: "liens", name: "outsideLinksList", widget: "list", fields: [{label: "texte", name: "text", widget: "string"}, {label: "lien", name: "link", widget: "string"}]}]
+        }
